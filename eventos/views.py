@@ -37,6 +37,7 @@ def createEvent(request):
                 "evento_virtual": form.cleaned_data['evento_virtual'],
                 "usuario": request.session['app_user']
             }
+
             requests.post(getBackendEndpoint(), json=obj)
             return redirect('eventos:eventList')
     form = CreateForm()
