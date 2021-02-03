@@ -1,0 +1,42 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'eventos/style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form action="{% url 'eventos:myLogin' %}" method="post">
+      <div class="imgcontainer">
+        <img src="{% static 'eventos/images/img_avatar2.png' %}" alt="Avatar" class="avatar">
+      </div>
+
+      <div class="container">
+          <p>{{ msg }}</p>
+          {% csrf_token %}
+          <form action="{% url 'eventos:myLogin' %}" method="post">
+          <div class="container">
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.email.errors }}
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    {{ form.email }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.password.errors }}
+                    <label for="{{ form.password.id_for_label }}">Password:</label>
+                    {{ form.password }}
+                </div>
+                <button type="submit">Ingresar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+          <a href="./register">Registrese aquí</a></a>
+      </div>
+    </form>
+</body>
+</html>

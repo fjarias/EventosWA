@@ -1,0 +1,73 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'eventos/style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Evento</title>
+    <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+      <!-- XDSoft DateTimePicker -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action="{%  url 'eventos:createEvent' %}" method="post">
+          <div class="container">
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.nombre.errors }}
+                    <label for="{{ form.nombre.id_for_label }}">Nombre Evento:</label>
+                    {{ form.nombre }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.categoria.errors }}
+                    <label for="{{ form.categoria.id_for_label }}">Categoría:</label>
+                    {{ form.categoria }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.lugar.errors }}
+                    <label for="{{ form.lugar.id_for_label }}">Lugar:</label>
+                    {{ form.lugar }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.direccion.errors }}
+                    <label for="{{ form.direccion.id_for_label }}">Dirección?</label>
+                    {{ form.direccion }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.fecha_inicio.errors }}
+                    <label for="{{ form.fecha_inicio.id_for_label }}">Fecha Inicio?</label>
+                    {{ form.fecha_inicio }}
+                    <script>
+                      $(function () {
+                        $("#id_fecha_inicio").datetimepicker({
+                          format: 'd/m/Y H:i',
+                        });
+                      });
+                    </script>
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.fecha_fin.errors }}
+                    <label for="{{ form.fecha_fin.id_for_label }}">Fecha Fin?</label>
+                    {{ form.fecha_fin }}
+                    <script>
+                      $(function () {
+                        $("#id_fecha_fin").datetimepicker({
+                          format: 'd/m/Y H:i',
+                        });
+                      });
+                    </script>
+                </div>
+                    <div class="fieldWrapper">
+                    {{ form.evento_virtual.errors }}
+                    <label for="{{ form.evento_virtual.id_for_label }}">Evento virtual?</label>
+                    {{ form.evento_virtual }}
+                </div>
+                <button type="submit">Crear Evento</button>
+          </div>
+     </form>
+</body>
+</html>

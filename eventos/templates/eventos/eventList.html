@@ -1,0 +1,36 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'eventos/style.css' %}">
+<!DOCTYPE html>
+<h2 lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Eventos</title>
+</head>
+<body>
+    <p><h2>Hola {{ app_user }}</h2></p>
+    <p><h2>Eventos</h2></p>
+    <table>
+        <tr>
+            <td><b>Nombre</b></td>
+            <td><b>Categoria</b></td>
+            <td><b>Evento Virtual</b></td>
+            <td><b>Fecha Creación</b></td>
+            <td><b>Acción</b></td>
+            <td><b>Acción</b></td>
+        </tr>
+        {% for evt in events %}
+            <tr>
+                <td>{{ evt.nombre }}</td>
+                <td>{{ evt.categoria }}</td>
+                <td>{{ evt.evento_virtual }}</td>
+                <td>{{ evt.fecha_creacion }}</td>
+                <td><a href="{%  url 'eventos:deleteEvent' evt.id %}">Eliminar</a></td>
+                <td><a href="{%  url 'eventos:updateEvent' evt.id %}">Ver Detalle-Actualizar</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{% url 'eventos:createEvent' %}">Crear un nuevo evento</a></p>
+    <p><a href="{% url 'eventos:myLogout' %}">Logout</a></p>
+</body>
+</html>
