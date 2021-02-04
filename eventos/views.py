@@ -120,7 +120,7 @@ def myLogout(request):
     if not request.user.is_authenticated:
         return redirect('eventos:myLogin')
     logout(request)
-    return HttpResponse("Logout exitoso")
+    return redirect('eventos:myLogin')
 
 
 # Vista de registro
